@@ -1,5 +1,6 @@
 <?php
-  require_once('config.php'); 
+  require_once('entities/Db.php'); 
+  require_once('entities/Product.php'); 
   $title = 'Оформить заказ';
 ?>
 <?php include('./templates/_head.php'); ?>
@@ -19,19 +20,17 @@
 				<div class="col-md-9">
 
 					<div class="title-1">Сделать заказ</div>
-                    <?php 
+          <?php 
 					$currentProductId = intval($_GET['id']);
-					$sql = "SELECT*FROM products WHERE id = '$currentProductId'";
-					$result = $db -> query($sql);
-					$product = $result -> fetch(PDO::FETCH_ASSOC);
+					$product = Db::getProductById($currentProductId);
 					?>
 					<div class="order-item">
 						<div class="order-img">
-							<img class="order-img" src="img/products/<?=$product['image']?>">
+							<img class="order-img" src="img/products/<?=$product->getImage()?>">
 						</div>
 						<div class="order-desc">
-							<h4 class="order-title"><?=$product['title']?></h4>
-							<div class="order-price"><?=$product['price']?> ₽</div>
+							<h4 class="order-title"><?=$product->getTitle()?></h4>
+							<div class="order-price"><?=$product->getPrice()?> ₽</div>
 						</div>
 					</div>
 
@@ -48,9 +47,9 @@
 						<div class="form-group">
 							<input name="adress" type="text" class="form-control" placeholder="Адрес">
 						</div>
-						<input type="hidden" name="productTitle" value="<?=$product['title']?>">
-						<input type="hidden" name="productId" value="<?=$product['id']?>">
-						<input type="hidden" name="productPrice" value="<?=$product['price']?>">
+						<input type="hidden" name="productTitle" value="<?=$product->getTitle()?>">
+						<input type="hidden" name="productId" value="<?=$product->getId()?>">
+						<input type="hidden" name="productPrice" value="<?=$product->getPrice()?>">
 						<div class="form-group">
 							<input type="submit" class="btn" value="Оформить заказ">
 						</div>

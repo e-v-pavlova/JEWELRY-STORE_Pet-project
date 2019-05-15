@@ -1,5 +1,5 @@
 <?php
-  require_once('config.php'); 
+	require_once('entities/Db.php'); 
   $title = 'Описание изделия'
 ?>
 <?php include('./templates/_head.php'); ?>
@@ -20,26 +20,24 @@
 
 					<?php 
 					$currentProductId = intval($_GET['id']);
-					$sql = "SELECT*FROM products WHERE id = '$currentProductId'";
-					$result = $db -> query($sql);
-					$product = $result -> fetch(PDO::FETCH_ASSOC);
+					$product = Db::getProductById($currentProductId);
 					?>
-					<div class="product-title"><?php echo $product['title'] ?></div>
+					<div class="product-title"><?php echo $product->getTitle() ?></div>
 
 					<div class="row">
 						<div class="col-6 ">
 						    <div class="product-page-img">
-								<img id="zoom-image"src="img/products/<?php echo $product['image'] ?>" alt="">
+								<img id="zoom-image"src="img/products/<?php echo $product->getImage() ?>" alt="Изображение изделия">
 								<div id="zoom-result" class="img-zoom-result"></div>
 							</div>
 						</div>
 						<div class="col-6">
-							<div class="product-price"><?php echo $product['price'] ?> руб</div>
-							<a href="order.php?id=<?php echo $product['id'] ?>" class="product-btn-order">
+							<div class="product-price"><?php echo $product->getPrice() ?> руб</div>
+							<a href="order.php?id=<?php echo $product->getId() ?>" class="product-btn-order">
 								Сделать заказ
 							</a>
 							<div class="product-desc">
-								<?php echo $product['description'] ?>
+								<?php echo $product->getDescription() ?>
 							</div>
 
 						</div>

@@ -251,8 +251,8 @@ a.product-btn-order:hover {
 	/*height: =width;*/
 	overflow: hidden;
 }
-.product-img img,
-.product-img .gorizontal-img{
+.product-img img/*,
+.product-img .gorizontal-img*/{
 	position: absolute;
 	left: 50%;
 	top: 50%;
@@ -265,18 +265,18 @@ a.product-btn-order:hover {
 	transition-duration: 0.6s;
 			
 }
-.product-img .vertical-img{
+/*.product-img .vertical-img{
 	width: 100%;
 	height: auto;
-}
-.card:hover .product-img img,
-.card:hover .product-img .gorizontal-img{
+}*/
+.card:hover .product-img img/*,
+.card:hover .product-img .gorizontal-img*/{
 	height: 130%;
 }
-.card:hover .product-img .vertical-img{
+/*.card:hover .product-img .vertical-img{
 	width: 130%;
 	height:auto;
-}
+}*/
 
 
 /*for square proportion of .product-image blocks (height = width)*/
