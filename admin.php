@@ -1,5 +1,6 @@
 <?php
-  require_once('config.php'); 
+  require_once('entities/Product.php'); 
+  require_once('entities/Db.php'); 
   session_start();
   if (isset($_SESSION['login']) && $_SESSION['login'] =="on"){
 
@@ -42,11 +43,11 @@
 						</div>
 						<div class="form-group">
 							<select class="form-control" name="category">
-								<option value="Кольца">Кольца</option>
-								<option value="Браслеты">Браслеты</option>
-								<option value="Подвески">Подвески</option>
-								<option value="Серьги">Серьги</option>
-								<option value="Комплекты">Комплекты</option>
+								<option value="1">Кольца</option>
+								<option value="2">Браслеты</option>
+								<option value="3">Подвески</option>
+								<option value="4">Серьги</option>
+								<option value="5">Комплекты</option>
 							</select>
 						</div>
 						<div class="form-group">
@@ -65,6 +66,11 @@
 						<div class="form-group pt-3">
 							<label for="image">Фото:</label>
 							<input name="image" type="file" class="form-control-file" id="image">
+						</div>
+
+						<div class="form-group pt-3">
+							<label for="image_prev">Фото превью (350x350px):</label>
+							<input name="image_prev" type="file" class="form-control-file" id="image_prev">
 						</div>
 
 						<div class="form-group">

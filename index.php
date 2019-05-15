@@ -1,5 +1,6 @@
 <?php
-  require_once('config.php'); 
+	require_once('entities/Product.php'); 
+	require_once('entities/Db.php'); 
   $title = 'Главная страница'
 ?>
 <?php include('./templates/_head.php'); ?>
@@ -21,26 +22,15 @@
 					<div class="row cards">
                     
 					<?php
-                        
-            if(isset($_GET['category'])){
-
-							$CategoriesTypes= ['Кольца', 'Браслеты', 'Подвески', 'Серьги', 'Комплекты'];
-              $currentProductCategory= intval($_GET['category']);	
-
-							$sql = "SELECT*FROM products WHERE category = :categoryName";
-							$result = $db->prepare($sql);
-							$result->bindValue(':categoryName', $CategoriesTypes[$currentProductCategory-1]);
-							$result->execute();
-						}else{
-							$sql = "SELECT*FROM products";
-							$result = $db -> query($sql);
-						}
-
-						$products = $result -> fetchAll(PDO::FETCH_ASSOC);
-
-						foreach ($products as $product){
-							include('./templates/_product-item.php');
-						} 
+                    if(isset($_GET['category'])) {
+						$currentProductCategory= intval($_GET['category']);	
+						$products = Db::getProductsListByCategory($currentProductCategory);
+					}else{
+						$products = Db::getProductsList();
+					}
+					foreach ($products as $product){
+						include('./templates/_product-item.php');
+					} 
                     ?>
 
 					</div>
